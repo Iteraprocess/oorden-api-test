@@ -1,0 +1,14 @@
+{
+  "name": "oorden-api-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "leer-terceros.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alonso Soto",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
