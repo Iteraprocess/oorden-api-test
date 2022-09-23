@@ -10,11 +10,14 @@ axios.get(url, {params:{ ...params, fechaInicial: '2022-09-01', fechaFinal: '202
         console.log('Id Primera encontrada: ', operaciones[0].opOperacionId)
         //El servicio me responde las fechas sobre las que consulto
         console.log('El servicio me confirma las fechas sobre las que hice el request:', response.data.query)
-        
-        //return axios.get(url.concat('/', operaciones[0].opOperacionId),  {params})
+
+        operaciones.map(o => {
+            console.log('fechaOperacion: ', o.opFecha)
+        })
+        return axios.get(url.concat('/', operaciones[0].opOperacionId),  {params})
     })
     .then(function (response) {
-        //console.log(response.data)
+        console.log(response.data)
     })
     .catch(function (err) {
         console.log('---- ERROR ----');
