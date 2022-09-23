@@ -3,7 +3,7 @@ const url   = String(data.Url).concat(data.OrgId, '/operaciones')
 const axios = require('axios').default;
 const params = {T: data.Token};
 
-axios.get(url, {params:{ ...params, fechaInicial: '2022-09-01', fechaFinal: '2022-09,30'}})
+axios.get(url, {params:{ ...params, fechaInicial: '2022-09-01', fechaFinal: '2022-09-30'}})
     .then(function (response) {
         const operaciones  = response.data.data
         console.log('OperacionesEncontradas:', operaciones.length)
