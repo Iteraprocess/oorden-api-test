@@ -11,12 +11,12 @@ Para utilizar el API version 2 de Oorden es necesario tener los datos:
 Se trata de un API que utiliza JSON REST.
 En cada Request, es necesario icluir en los headers los valores: 
 
-OordenOrg => {{OrganizacionId}}
-OordenUsr =>  {{UsuarioId}}
-Authentication => Bearer {{Token}}
+* **OordenOrg** => {{OrganizacionId}}
+* **OordenUsr** =>  {{UsuarioId}}
+* **Authentication** => Bearer {{Token}}
 
 
-Si los datos de autneticacion son incorrectos el api responderá con el error "Wrong Authentication".
+Si los datos de autenticación son incorrectos el api responderá con el error "Wrong Authentication".
 
 Para iniciar a utilizar clona el repositiorio y en la terminal instalas las dependencias `npm install` a continuacion crea un archivo `miEmpresa.json` en la carpeta `/organizations`. Básate en el ejemplo que viene en el archivo `examplev2.json` sustituyendo los datos que se piden.
 
