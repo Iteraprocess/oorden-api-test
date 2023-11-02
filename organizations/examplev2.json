@@ -1,0 +1,6 @@
+{
+    "Token": "{{Token}}",
+    "OrganizacionId" : "{{OrgId}}",
+    "UsuarioId" : "{{UsrId}}",
+    "Url" : "https://erp.oorden.com/webapi/v2"
+}

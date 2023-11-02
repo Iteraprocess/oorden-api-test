@@ -1,1 +1,1 @@
-module.exports = require('./organizations/data.json')
+module.exports = require('./organizations/datav2.json')
