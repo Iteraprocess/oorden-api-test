@@ -22,13 +22,11 @@ console.log('Headers a enviar:', headers);
 
 axios.get(url , {headers, params:{fechaDesde, fechaHasta} })
     .then(function (response) {
-        const data  = response.data
+        const data  = response.data;
         
         console.log('Se recibe en data.cuenta los datos de la cuenta');
         console.log('En auxiliar se tiene un array con cada uno de los movimientos');
         console.log(data.cuenta)
-
-       
     })
     .catch(function (err) {
         console.log('---- ERROR ----');
