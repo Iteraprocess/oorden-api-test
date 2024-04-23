@@ -5,11 +5,13 @@
  interface InputOperacion {
     operacion : Operacion
     items : Array<ItemOperacion>
+    aplicar?: boolean
  }
  ```
 
 En la operacion debe enviarse la información general de la operación (el encabezado)y en items un arreglo de objetos de tipo ItemOperacion que son cada uno de los ítems, partidas o conceptos de la operación
 
+La propiedad `aplicar` especifica si la operación va a aplicarse para lo cual hay que enviar el valor `true` o simplemente quedará como borrador para lo cual hay que mandar `false`. Si no se especifica este valor queda en `false`, dicho de otra forma se queda en borrador.
 
 
  ### Estructuras de datos 
@@ -29,7 +31,6 @@ interface Operacion {
     tercero? : TerceroDeOperacion
     sucursalId? : null | string
     almacenId? : null | string
-    vendedorId? :string
     usoCfdi : string
     metodoDePago : string
     formaDePago: string
@@ -51,6 +52,10 @@ Descripción:
 - **tasaDeCambio** en el caso de que la moneda no sea la moneda base de la organizacion se tomará este valor como tasa de cambio para la contabilización 
 - **terceroId** especifica el cleinte o proveedor de la operacion, si se quiere relacionar mediante Id, si se omite este valor, entonces se tomarán los datos de "tercero"
 - **tercero** espefiifica el cliente o proveedor relacionado (ver estructura TerceroDeOperacion)
+- **sucursalId** se puede especificar una sucursal relacionada a la operación, en caso de no especificarse toma la sucursal por default
+- **almacenId** se especifica el almacén. Esto es especialmente relevante en operaciones que generan un movimuento de inventario (el al macén del que salen las ventas o al que entrán las compras). En caso de no especifiacrse se asigna el almacen  por default de la sucursal.
+- 
+
 
 
 #### ItemOperacion

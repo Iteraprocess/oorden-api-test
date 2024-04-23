@@ -1,4 +1,4 @@
-const data  = require('../data')
+const data  = require('../../data')
 const axios = require('axios').default;
 
 //Se arman los headers que se van a enviar
