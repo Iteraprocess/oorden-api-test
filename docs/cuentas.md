@@ -34,6 +34,8 @@ type EstatusCuenta =
 
 
 ```typescript
+El tipo sobre el que se categoriza la cuenta contable. Del tipo depende la naturaleza que se especifica entre parentesis.
+
 type TipoDeCuenta = 
     /** Activos */
       '11C' //Activo Circulante (D)
@@ -63,8 +65,6 @@ type TipoDeCuenta =
     | '54F' //Gastos Financieros (D)
     | '55O' //Otros costos y gastos (D)
     | '56I' //Impuestos (D)
-   
-
 
 ```
 
@@ -90,16 +90,13 @@ Los cuales se definen a continuación:
 ```typescript
 
 interface CuentaArbolItem {
-    id : string,
-    cuenta : string,
-    nombre : string,
-    
-    /*Ver Tipos de Cuentas */
+    id : string
+    cuenta : string
+    nombre : string
     tipoId : TipoDeCuenta 
-    
     naturaleza : NaturalezaCuenta
     
-    /*Es acumulativa, es decir no pueden asingarse partidas directamente */
+    /*Si acumulativa, es decir no pueden asingarse partidas directamente */
     acumulativa: 1 | 0, 
     
     /* Nivel de la cuenta, empezando por 1 para las cuentas de mayor*/
@@ -107,7 +104,6 @@ interface CuentaArbolItem {
     
     /*Referencia al id de la cuenta padre, si el nivel es cero no tiene padre, por tanto su valor es null */
     subcuentaDe : null | string, 
-    
     estatus: EstatusCuenta
 }
 ```
@@ -135,10 +131,11 @@ interface Respuesta_Cuenta {
 ```typescript
 
 interface CuentaItem {
-    id : string,
-    cuenta : string,
-    nombre : string,
-    
+    id : string
+    cuenta : string
+    nombre : string
+    descripcion: string
+
     /*Ver Tipos de Cuentas */
     tipoId : TipoDeCuenta 
 
@@ -154,9 +151,6 @@ interface CuentaItem {
     /*Referencia al id de la cuenta padre, si el nivel es cero no tiene padre, por tanto su valor es null */
     subcuentaDe : null | string, 
      
-    estatus: EstatusCuenta,
-
-    descripcion: string
     /** Si es cuenta bancaria debe ir en 1 */
     esBanco : 1 | 0
     
@@ -165,6 +159,8 @@ interface CuentaItem {
  
     /** La cuenta bancaria, si la hay */
     cuentaBancaria: string
+
+     estatus: EstatusCuenta,
 }
 ```
 
