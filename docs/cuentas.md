@@ -1,17 +1,71 @@
 # API para cuentas contables 
 
-Las cuentas en Oorden tienen una estructura de arbol, es decir que se acumulan o anidan de aceurdo al numero de cuenta o código que se asigna. 
+Las cuentas en Oorden tienen una estructura de árbol, es decir que se acumulan o anidan de aceurdo al numero de cuenta o código que se asigna. 
 
-Por ejemplo, las cuentas por default tienen la siguiente estructura 111-22-33-444. Esta estructura es de 4 niveles, y cada nivel tiene digitos significativos en cada uno de los bloques señalados, esto es, todas las cuentas de nivel uno van a tener valores llenos significativos en el bloque 1 pero en los demas tendran el valor cero (por ejemplo : 105-00-00-000)
+Por ejemplo, las cuentas por default tienen la siguiente estructura 111-22-33-444. Esta estructura es de 4 niveles, y cada nivel tiene digitos significativos en cada uno de los bloques señalados, esto es, todas las cuentas de nivel uno van a tener valores llenos significativos en el bloque uno pero en los demas tendran el valor cero (por ejemplo : 105-00-00-000)
 
-Las subcuentas de una determinada cuenta de nivel uno, van a tener en el bloque uno el mismo valor pero van a tener tambien un valor significativo en el bloque 2 (siguiendo el ejemplo: 105-01-00-000). Del mismo modo las cuentas de nivel 3 tendrán el valor heradado de su cuenta padre del bloque 2 (y por tanto tambien del bloque 1) pero teniendo tambien un valor significativo en el bloque 3 (ejemplo 105-01-07-000). Y asi sucesivamente
+Las subcuentas de una determinada cuenta de nivel uno, van a tener en el bloque uno el mismo valor pero van a tener tambien un valor significativo en el bloque dos (siguiendo el ejemplo: 105-01-00-000). Del mismo modo las cuentas de nivel tres tendrán el valor heradado de su cuenta padre del bloque 2dos (y por tanto tambien del bloque uno) pero teniendo tambien un valor significativo en el bloque tres (ejemplo 105-01-07-000). Y así sucesivamente
 
 Se pueden configurar estructuras de cuentas personalizadas, sin embargo esto obliga a reestructurar el catállgo de cuentas y solo es recomendado cuendo sea a bsolutamente necesario.
 
 ## Tipos de datos para cuentas
 
+##### Naturaleza de la cuenta 
+Especifica la naturaleza contable de las cuentas
+
 ```typescript
-type NaturalezaCuenta = 'A' | 'D'
+type NaturalezaCuenta = 
+      'A' /*Acreedora*/ 
+    | 'D' /*Deudora*/
+```
+
+##### Estatus de la cuenta 
+
+Especifica el estado de visibilidad  de las cuentas
+
+```typescript
+type EstatusCuenta = 
+      1 /*Activa*/ 
+    | 0 /*Inactiva*/
+```
+
+
+##### Tipo de la cuenta 
+
+
+```typescript
+type TipoDeCuenta = 
+    /** Activos */
+      '11C' //Activo Circulante (D)
+    | '12F' //Activo Fijo (D)
+    | '130' //Otros Activos (D)
+    | '14P' //Pagos Anticipados (D)
+
+    /** Pasivos */
+    | '21C' //Pasivo corto plazo (A)
+    | '22L' //Pasivo largo plazo (A)
+    | '23O' //Otros Pasivos (A)
+
+    /** Patrimonio O Capital */
+    | '31C' //Capital (A)
+    | '32R' //Resultados de ejercicios anteriores (A)
+    | '33O' //Otras cuentas de capital (A)
+
+    /** Ingresos */
+    | '41V' //Ventas (A)
+    | '43O' //Otros Ingresos (A)
+
+    /** Costos */
+    | '51C' //Costos de ventas (D)
+    | '51F' //Costos de Producción (D)
+    | '52G' //Gastos de Operación (D)
+    | '53D' //Depreciación (D)
+    | '54F' //Gastos Financieros (D)
+    | '55O' //Otros costos y gastos (D)
+    | '56I' //Impuestos (D)
+   
+
+
 ```
 
 ## Árbol de cuentas 
@@ -34,19 +88,6 @@ Los cuales se definen a continuación:
 
 
 ```typescript
-
-/**
- * D = Deudora
- * A = Acreedora
- */
-type NaturalezaCuenta = 'A' | 'D'
-
-/*
-* 1 Activa
-* 0 Inactiva / No visible
-*/
-type EstatusCuenta = 0 | 1 
-
 
 interface CuentaArbolItem {
     id : string,
@@ -93,19 +134,6 @@ interface Respuesta_Cuenta {
 
 ```typescript
 
-/**
- * D = Deudora
- * A = Acreedora
- */
-type NaturalezaCuenta = 'A' | 'D'
-
-/*
-* 1 Activa
-* 0 Inactiva / No visible
-*/
-type EstatusCuenta = 0 | 1 
-
-
 interface CuentaItem {
     id : string,
     cuenta : string,
@@ -113,7 +141,8 @@ interface CuentaItem {
     
     /*Ver Tipos de Cuentas */
     tipoId : TipoDeCuenta 
-    
+
+    /** La naturaleza contable */
     naturaleza : NaturalezaCuenta
     
     /*Es acumulativa, es decir no pueden asingarse partidas directamente */
@@ -128,11 +157,13 @@ interface CuentaItem {
     estatus: EstatusCuenta,
 
     descripcion: string
-
+    /** Si es cuenta bancaria debe ir en 1 */
     esBanco : 1 | 0
-
-    banco:  string
-
+    
+    /** El nombre del banco, si lo hay */
+    banco:  string | null
+ 
+    /** La cuenta bancaria, si la hay */
     cuentaBancaria: string
 }
 ```
