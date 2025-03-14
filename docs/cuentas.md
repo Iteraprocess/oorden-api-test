@@ -31,11 +31,9 @@ type EstatusCuenta =
 
 
 ##### Tipo de la cuenta 
-
-
-```typescript
 El tipo sobre el que se categoriza la cuenta contable. Del tipo depende la naturaleza que se especifica entre parentesis.
 
+```typescript
 type TipoDeCuenta = 
     /** Activos */
       '11C' //Activo Circulante (D)
@@ -160,7 +158,7 @@ interface CuentaItem {
     /** La cuenta bancaria, si la hay */
     cuentaBancaria: string
 
-     estatus: EstatusCuenta,
+    estatus: EstatusCuenta,
 }
 ```
 
