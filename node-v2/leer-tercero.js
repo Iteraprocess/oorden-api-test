@@ -6,8 +6,8 @@ const axios = require('axios');
 
 
 
-async function leerOperacion(operacionId) {
-    const Url = `${data.Url}/operaciones/operacion/${operacionId}`;
+async function leerOperacion(terceroId) {
+    const Url = `${data.Url}/terceros/tercero/${terceroId}`;
 
     console.log(Url)
 

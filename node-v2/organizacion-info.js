@@ -1,6 +1,6 @@
 
 //se importan los datos y credenciales para las llamads
-const data = require('./../organizations/data-webxciter.json')
+const data = require('./../organizations/data-Fernanda.json')
 // se utuliza axios para manejar las peitciioones 
 const axios = require('axios');
 
@@ -11,10 +11,13 @@ async function GetOrganizacionInfo() {
     //Se arman las headers tal cual se necesitan
     const headers = {
         OordenOrg : data.OrganizacionId,
+        OrganizacionId:  data.OrganizacionId,
         OordenUsr : data.UsuarioId,
+        UsuarioId : data.UsuarioId,
         Authorization: 'Bearer '.concat(data.Token)
     }
 
+    console.log(headers);
     let response;
     
     try {

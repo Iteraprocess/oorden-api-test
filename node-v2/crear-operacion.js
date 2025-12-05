@@ -1,6 +1,6 @@
 
 //se importan los datos y credenciales para las llamads
-const data = require('./../organizations/data-webxciter.json')
+const data = require('./../organizations/data.json')
 // se utuliza axios para manejar las peitciioones 
 const axios = require('axios');
 
@@ -9,7 +9,7 @@ const axios = require('axios');
 async function PreCrearOperacion() {
     const aplicar = '';
     //const Url = `http://localhost:8145/crear/VTA`;
-    const Url = `${data.Url}/operaciones/operacion/VTA`;
+    const Url = `${data.Url}/operaciones/crear/VTA`;
 
     //Se arman las headers tal cual se necesitan
     const headers = {
